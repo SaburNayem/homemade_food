@@ -26,7 +26,10 @@ class AppController extends GetxController {
     super.onInit();
   }
 
-  void selectTab(int index) => selectedBottomTab.value = index;
+  void selectTab(int index) {
+    selectedBottomTab.value = index;
+    update();
+  }
 
   void selectCategory(String category) => selectedCategory.value = category;
 
