@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:get/get.dart';
 
 import 'package:home_food/core/controllers/app_controller.dart';
@@ -14,10 +15,8 @@ class CustomerShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final app = Get.find<AppController>();
-
-    return Obx(
-      () => LayoutBuilder(
+    return GetBuilder<AppController>(
+      builder: (app) => LayoutBuilder(
         builder: (context, constraints) {
           final isCompact = constraints.maxWidth < 380;
           final pages = [
@@ -29,6 +28,7 @@ class CustomerShell extends StatelessWidget {
           ];
 
           return Scaffold(
+            extendBody: true,
             body: pages[app.selectedBottomTab.value],
             floatingActionButton: isCompact
                 ? FloatingActionButton(
@@ -44,35 +44,45 @@ class CustomerShell extends StatelessWidget {
                     label: const Text('Cart'),
                     icon: const Icon(Icons.shopping_bag_outlined),
                   ),
-            bottomNavigationBar: NavigationBar(
-              height: isCompact ? 68 : 76,
-              labelBehavior: isCompact
-                  ? NavigationDestinationLabelBehavior.onlyShowSelected
-                  : NavigationDestinationLabelBehavior.alwaysShow,
-              selectedIndex: app.selectedBottomTab.value,
-              onDestinationSelected: app.selectTab,
-              destinations: const [
-                NavigationDestination(
-                  icon: Icon(Icons.home_outlined),
-                  label: 'Home',
+            bottomNavigationBar: SafeArea(
+              top: false,
+              child: FluidNavBar(
+                defaultIndex: app.selectedBottomTab.value,
+                onChange: app.selectTab,
+                style: const FluidNavBarStyle(
+                  barBackgroundColor: Colors.white,
+                  iconBackgroundColor: Color(0xFFE67E22),
+                  iconSelectedForegroundColor: Colors.white,
+                  iconUnselectedForegroundColor: Color(0xFF9A9A9A),
                 ),
-                NavigationDestination(
-                  icon: Icon(Icons.search),
-                  label: 'Browse',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.receipt_long_outlined),
-                  label: 'Custom',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.delivery_dining_outlined),
-                  label: 'Orders',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.person_outline),
-                  label: 'Profile',
-                ),
-              ],
+                icons: [
+                  FluidNavBarIcon(
+                    icon: Icons.home_outlined,
+                    backgroundColor: Color(0xFFE67E22),
+                    extras: {'label': 'Home'},
+                  ),
+                  FluidNavBarIcon(
+                    icon: Icons.search,
+                    backgroundColor: Color(0xFFE67E22),
+                    extras: {'label': 'Browse'},
+                  ),
+                  FluidNavBarIcon(
+                    icon: Icons.receipt_long_outlined,
+                    backgroundColor: Color(0xFFE67E22),
+                    extras: {'label': 'Custom'},
+                  ),
+                  FluidNavBarIcon(
+                    icon: Icons.delivery_dining_outlined,
+                    backgroundColor: Color(0xFFE67E22),
+                    extras: {'label': 'Orders'},
+                  ),
+                  FluidNavBarIcon(
+                    icon: Icons.person_outline,
+                    backgroundColor: Color(0xFFE67E22),
+                    extras: {'label': 'Profile'},
+                  ),
+                ],
+              ),
             ),
           );
         },
