@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:home_food/core/routes/app_routes.dart';
 import 'package:home_food/core/widgets/app_primary_button.dart';
 import 'package:home_food/core/widgets/app_text_field.dart';
 import 'package:home_food/features/auth/controllers/auth_controller.dart';
@@ -14,8 +13,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final emailController = TextEditingController(text: 'nadia@example.com');
-  final passwordController = TextEditingController(text: '123456');
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   void dispose() {
@@ -35,11 +34,13 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(24),
           children: [
             Text(
-              'Welcome back',
+              'Login',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 8),
-            Text('Login to order homemade food around you.'),
+            Text(
+              'This screen is static for now. You can continue without backend authentication.',
+            ),
             const SizedBox(height: 24),
             AppTextField(
               controller: emailController,
@@ -53,23 +54,10 @@ class _LoginScreenState extends State<LoginScreen> {
               prefixIcon: Icons.lock_outline,
               obscureText: true,
             ),
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () => Get.toNamed(AppRoutes.forgotPassword),
-                child: const Text('Forgot password?'),
-              ),
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
             AppPrimaryButton(
-              label: 'Login now',
-              onPressed: () {
-                auth.login(
-                  email: emailController.text,
-                  password: passwordController.text,
-                );
-              },
+              label: 'Continue',
+              onPressed: auth.enterApp,
             ),
           ],
         ),

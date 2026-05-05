@@ -30,7 +30,22 @@ class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
             expandedHeight: 300,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(food.imageUrl, fit: BoxFit.cover),
+              background: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0xFFFFE0B2), Color(0xFFE67E22)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                child: const Center(
+                  child: Icon(
+                    Icons.ramen_dining_outlined,
+                    size: 96,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ),
           SliverToBoxAdapter(

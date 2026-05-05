@@ -21,12 +21,18 @@ class WelcomeScreen extends StatelessWidget {
             Container(
               height: 280,
               decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFFFFE0B2), Color(0xFFF3B55D)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
                 borderRadius: BorderRadius.circular(32),
-                image: const DecorationImage(
-                  image: NetworkImage(
-                    'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
-                  ),
-                  fit: BoxFit.cover,
+              ),
+              child: const Center(
+                child: Icon(
+                  Icons.restaurant_menu_rounded,
+                  size: 92,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -50,10 +56,10 @@ class WelcomeScreen extends StatelessWidget {
               onPressed: () => Get.toNamed(AppRoutes.signup),
               child: const Text('Create account'),
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: 12),
             TextButton(
-              onPressed: auth.useDemoCustomer,
-              child: const Text('Continue with demo account'),
+              onPressed: auth.enterApp,
+              child: const Text('Continue as guest'),
             ),
           ],
         ),

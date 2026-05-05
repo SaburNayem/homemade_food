@@ -15,24 +15,21 @@ class CustomerShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final app = Get.find<AppController>();
-    final pages = const [
-      HomeScreen(),
-      FoodListingScreen(),
-      CustomFoodRequestScreen(),
-      OrdersScreen(),
-      ProfileScreen(),
-    ];
 
     return Obx(
       () => LayoutBuilder(
         builder: (context, constraints) {
           final isCompact = constraints.maxWidth < 380;
+          final pages = [
+            const HomeScreen(),
+            const FoodListingScreen(),
+            const CustomFoodRequestScreen(),
+            const OrdersScreen(),
+            const ProfileScreen(),
+          ];
 
           return Scaffold(
-            body: IndexedStack(
-              index: app.selectedBottomTab.value,
-              children: pages,
-            ),
+            body: pages[app.selectedBottomTab.value],
             floatingActionButton: isCompact
                 ? FloatingActionButton(
                     onPressed: () => Get.to(() => const CartScreen()),

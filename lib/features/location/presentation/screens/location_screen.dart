@@ -45,25 +45,28 @@ class LocationScreen extends StatelessWidget {
             Container(
               height: 220,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(28),
-                image: const DecorationImage(
-                  image: NetworkImage(
-                    'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80',
-                  ),
-                  fit: BoxFit.cover,
+                gradient: const LinearGradient(
+                  colors: [Color(0xFFFFF1DC), Color(0xFFF9D38A)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
+                borderRadius: BorderRadius.circular(28),
               ),
               alignment: Alignment.center,
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.88),
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                child: const Text(
-                  'Map picker placeholder for future Google Maps integration',
-                ),
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.map_outlined,
+                    size: 56,
+                    color: Color(0xFFE67E22),
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    'Map picker placeholder for future Google Maps integration',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
           ],

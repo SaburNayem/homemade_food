@@ -33,15 +33,7 @@ class CartItemTile extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: Image.network(
-                              item.food.imageUrl,
-                              height: 72,
-                              width: 72,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                          const _CartThumbnail(),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Column(
@@ -49,9 +41,7 @@ class CartItemTile extends StatelessWidget {
                               children: [
                                 Text(
                                   item.food.name,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.titleMedium,
+                                  style: Theme.of(context).textTheme.titleMedium,
                                 ),
                                 const SizedBox(height: 4),
                                 Text(item.food.cookName),
@@ -97,15 +87,7 @@ class CartItemTile extends StatelessWidget {
                   )
                 : Row(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: Image.network(
-                          item.food.imageUrl,
-                          height: 72,
-                          width: 72,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                      const _CartThumbnail(),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Column(
@@ -152,6 +134,26 @@ class CartItemTile extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _CartThumbnail extends StatelessWidget {
+  const _CartThumbnail();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 72,
+      width: 72,
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF2DF),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: const Icon(
+        Icons.lunch_dining_outlined,
+        color: Color(0xFFE67E22),
+      ),
     );
   }
 }

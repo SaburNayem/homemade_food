@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:home_food/core/models/food_item.dart';
 import 'package:home_food/core/utils/app_formatters.dart';
-import 'package:home_food/core/utils/responsive.dart';
 
 class FoodCard extends StatelessWidget {
   final FoodItem food;
@@ -35,15 +34,7 @@ class FoodCard extends StatelessWidget {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(18),
-                              child: Image.network(
-                                food.imageUrl,
-                                width: 84,
-                                height: 84,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                            const _FoodThumbnail(size: 84, radius: 18),
                             const SizedBox(width: 10),
                             Expanded(
                               child: Column(
@@ -51,9 +42,7 @@ class FoodCard extends StatelessWidget {
                                 children: [
                                   Text(
                                     food.name,
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.titleMedium,
+                                    style: Theme.of(context).textTheme.titleMedium,
                                   ),
                                   const SizedBox(height: 4),
                                   Text(food.cookName),
@@ -94,15 +83,7 @@ class FoodCard extends StatelessWidget {
                     )
                   : Row(
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            food.imageUrl,
-                            width: 96,
-                            height: 96,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                        const _FoodThumbnail(size: 96, radius: 20),
                         const SizedBox(width: 12),
                         Expanded(
                           child: Column(
@@ -141,6 +122,34 @@ class FoodCard extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _FoodThumbnail extends StatelessWidget {
+  final double size;
+  final double radius;
+
+  const _FoodThumbnail({required this.size, required this.radius});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFFFFF0D9), Color(0xFFF7C67A)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(radius),
+      ),
+      child: const Icon(
+        Icons.fastfood_outlined,
+        color: Color(0xFFE67E22),
+        size: 32,
+      ),
     );
   }
 }

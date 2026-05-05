@@ -178,8 +178,12 @@ class _SellerDashboardScreenState extends State<SellerDashboardScreen> {
             ...seller.sellerFoods.map(
               (food) => Card(
                 child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(food.imageUrl),
+                  leading: const CircleAvatar(
+                    backgroundColor: Color(0xFFFFE7C2),
+                    child: Icon(
+                      Icons.fastfood_outlined,
+                      color: Color(0xFFE67E22),
+                    ),
                   ),
                   title: Text(food.name),
                   subtitle: Text(

@@ -9,12 +9,16 @@ class AuthController extends GetxController {
 
   final Rxn<AppUser> currentUser = Rxn<AppUser>();
 
+  void enterApp() {
+    currentUser.value = _data.demoCustomer;
+    _routeAfterAuth();
+  }
+
   void login({
     required String email,
     required String password,
   }) {
-    currentUser.value = _data.demoCustomer;
-    _routeAfterAuth();
+    enterApp();
   }
 
   void signup({
@@ -31,11 +35,6 @@ class AuthController extends GetxController {
       favoriteFoodIds: const [],
       savedAddresses: _data.addresses,
     );
-    _routeAfterAuth();
-  }
-
-  void useDemoCustomer() {
-    currentUser.value = _data.demoCustomer;
     _routeAfterAuth();
   }
 

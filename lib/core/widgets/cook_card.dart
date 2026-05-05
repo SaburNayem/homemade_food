@@ -20,13 +20,21 @@ class CookCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(18),
-            child: Image.network(
-              cook.imageUrl,
-              height: 120,
-              width: double.infinity,
-              fit: BoxFit.cover,
+          Container(
+            height: 120,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [Color(0xFFFFE7C2), Color(0xFFF5C371)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: const Icon(
+              Icons.storefront_outlined,
+              color: Color(0xFFE67E22),
+              size: 42,
             ),
           ),
           const SizedBox(height: 12),
@@ -34,9 +42,7 @@ class CookCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(cook.specialty),
           const SizedBox(height: 8),
-          Text(
-            '${cook.rating} ★  •  ${cook.distanceKm} km  •  ${cook.deliveryTime}',
-          ),
+          Text('${cook.rating} ★  •  ${cook.distanceKm} km  •  ${cook.deliveryTime}'),
         ],
       ),
     );
